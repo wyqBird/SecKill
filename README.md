@@ -1,6 +1,6 @@
 # SecKill
 
-## 技术点介绍：
+## 技术点介绍
 * 语言：Java
 * 工具：IDEA
 * 前端：Thymeleaf+Bootstrap+JQuery
@@ -18,13 +18,14 @@
 * 接口安全
 
 ## 步骤
-### 一、项目框架搭建
+### 一、[项目框架搭建](https://blog.csdn.net/tiankong_12345/article/details/87277692)
 #### 1. SpringBoot环境搭建
 #### 2. 集成Thymeleaf，Result结果封装
 #### 3. 集成Mybatis+Druid
 #### 4. 集成Jedis+通用缓存Key封装
-### 二、实现登陆功能
+### 二、[实现登陆功能](https://blog.csdn.net/tiankong_12345/article/details/87365777)
 #### 1. 数据库设计
 #### 2. 明文密码两次MD5处理
 #### 3. JSR303参数校验+全局异常处理器
 #### 4. 分布式Session
+### 三、实现秒杀功能（未完待续）
