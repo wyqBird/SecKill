@@ -51,7 +51,7 @@ public class SecKillUserService {
         return user;
     }
 
-
+    //public String login(HttpServletResponse response, LoginVo loginVo) {
     public boolean login(HttpServletResponse response, LoginVo loginVo) {
         if(loginVo == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
@@ -74,6 +74,7 @@ public class SecKillUserService {
         String token = UUIDUtil.uuid();
         addCookie(response, token, user);
 
+        //return token;
         return true;
     }
 

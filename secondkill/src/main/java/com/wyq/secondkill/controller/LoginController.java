@@ -55,5 +55,17 @@ public class LoginController {
 
     }
 
+//    //生成用户信息时用
+//    @PostMapping("/do_login")
+//    @ResponseBody
+//    public Result<String> doLogin(HttpServletResponse response, @Valid LoginVo loginVo){
+//        log.info(loginVo.toString());
+//        //登陆
+//        String token = userService.login(response, loginVo);
+//        //如果出现异常，则直接抛出了，所有直接返回true就行
+//        return Result.success(token);
+//
+//    }
+
 }
 

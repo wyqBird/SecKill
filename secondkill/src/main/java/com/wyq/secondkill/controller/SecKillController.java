@@ -39,6 +39,9 @@ public class SecKillController {
     @Autowired
     SecKillService secKillService;
 
+    /**
+     * QPS:555   并发量5000，循环10次
+     */
     @PostMapping("/do_miaosha")
     public String list(Model model, SecKillUser user,
                        @RequestParam("goodsId")long goodsId) {

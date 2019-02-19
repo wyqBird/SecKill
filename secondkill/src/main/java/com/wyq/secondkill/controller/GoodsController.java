@@ -30,6 +30,9 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    /**
+     * QPS:966, 5000并发量，循环10次
+     */
     @GetMapping("/to_list")
     public String list(Model model, SecKillUser user) {
         model.addAttribute("user", user);
