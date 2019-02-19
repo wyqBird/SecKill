@@ -33,4 +33,8 @@
 #### 2. 商品列表页
 #### 3. 商品详情页
 #### 4. 订单详情页
-### 四、JMeter压测(未完待续)
+### 四、[JMeter压测](https://blog.csdn.net/tiankong_12345/article/details/87475823)
+#### 1. JMeter入门
+#### 2. 自定义变量模拟多用户
+#### 3. JMeter命令行使用
+#### 4. SpringBoot打war包
