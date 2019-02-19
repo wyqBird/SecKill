@@ -23,7 +23,7 @@ public class SecKillService {
     private OrderService orderService;
 
     @Transactional
-    public OrderInfo miaosha(SecKillUser user, GoodsVo goods) {
+    public OrderInfo seckill(SecKillUser user, GoodsVo goods) {
         //减库存、下订单、写入秒杀订单
         goodsService.reduceStock(goods);
         //创建订单信息，写入秒杀订单

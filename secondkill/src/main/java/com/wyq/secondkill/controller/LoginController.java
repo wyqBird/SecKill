@@ -1,12 +1,8 @@
 package com.wyq.secondkill.controller;
 
-import com.wyq.secondkill.domain.SecKillUser;
-import com.wyq.secondkill.result.CodeMsg;
 import com.wyq.secondkill.result.Result;
 import com.wyq.secondkill.service.SecKillUserService;
-import com.wyq.secondkill.util.ValidatorUtil;
 import com.wyq.secondkill.vo.LoginVo;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

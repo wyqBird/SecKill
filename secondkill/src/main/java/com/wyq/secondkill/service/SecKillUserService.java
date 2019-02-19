@@ -35,7 +35,36 @@ public class SecKillUserService {
     private RedisService redisService;
 
     public SecKillUser getById(long id) {
-        return secKillUserDao.getById(id);
+        //return secKillUserDao.getById(id);
+        //取缓存
+        SecKillUser user = redisService.get(SecKillUserKey.getById, ""+id, SecKillUser.class);
+        if(user != null) {
+            return user;
+        }
+        //取数据库
+        user = secKillUserDao.getById(id);
+        if(user != null) {
+            redisService.set(SecKillUserKey.getById, ""+id, user);
+        }
+        return user;
+    }
+
+    public boolean updatePassword(String token, long id, String formPass) {
+        //取user
+        SecKillUser user = getById(id);
+        if(user == null) {
+            throw new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
+        }
+        //更新数据库
+        SecKillUser toBeUpdate = new SecKillUser();
+        toBeUpdate.setId(id);
+        toBeUpdate.setPassword(MD5Util.formPassToDBPass(formPass, user.getSalt()));
+        secKillUserDao.update(toBeUpdate);
+        //处理缓存
+        redisService.delete(SecKillUserKey.getById, ""+id);
+        user.setPassword(toBeUpdate.getPassword());
+        redisService.set(SecKillUserKey.token, token, user);
+        return true;
     }
 
     public SecKillUser getByToken(HttpServletResponse response, String token){

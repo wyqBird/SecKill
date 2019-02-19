@@ -4,6 +4,8 @@ import com.wyq.secondkill.dao.OrderDao;
 import com.wyq.secondkill.domain.OrderInfo;
 import com.wyq.secondkill.domain.SecKillOrder;
 import com.wyq.secondkill.domain.SecKillUser;
+import com.wyq.secondkill.redis.OrderKey;
+import com.wyq.secondkill.redis.RedisService;
 import com.wyq.secondkill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,19 @@ import java.util.Date;
 public class OrderService {
     @Autowired
     private OrderDao orderDao;
+    @Autowired
+    private RedisService redisService;
+
 
     public SecKillOrder getSecKillOrderByUserIdGoodsId(Long userId, Long goodsId) {
-        return orderDao.getSecKillOrderByUserIdGoodsId(userId, goodsId);
+        //return orderDao.getSecKillOrderByUserIdGoodsId(userId, goodsId);
+        return redisService.get(OrderKey.getMiaoshaOrderByUidGid, "" + userId + "_" + goodsId, SecKillOrder.class);
     }
+
+    public OrderInfo getOrderById(long orderId) {
+        return orderDao.getOrderById(orderId);
+    }
+
 
     @Transactional
     public OrderInfo createOrder(SecKillUser user, GoodsVo goods) {
@@ -43,11 +54,14 @@ public class OrderService {
         orderInfo.setStatus(0);
 
         long orderId = orderDao.insert(orderInfo);
-        SecKillOrder secKillOrder = new SecKillOrder();
-        secKillOrder.setUserId(user.getId());
-        secKillOrder.setOrderId(orderId);
-        secKillOrder.setGoodsId(goods.getId());
-        orderDao.insertSecKillOrder(secKillOrder);
+        SecKillOrder seckillOrder = new SecKillOrder();
+        seckillOrder.setUserId(user.getId());
+        seckillOrder.setOrderId(orderId);
+        seckillOrder.setGoodsId(goods.getId());
+        orderDao.insertSecKillOrder(seckillOrder);
+
+        redisService.set(OrderKey.getMiaoshaOrderByUidGid, "" + user.getId() + "_" + goods.getId(), seckillOrder);
+
         return orderInfo;
     }
 }

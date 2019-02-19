@@ -40,4 +40,8 @@ public interface OrderDao {
             + "values(#{userId}, #{goodsId}, #{orderId})")
     public void insertSecKillOrder(SecKillOrder seckillOrder);
 
+    @Select("select * from order_info where id = #{orderId}")
+    public OrderInfo getOrderById(@Param("orderId")long orderId);
+
+
 }

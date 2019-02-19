@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author coldsmoke
  * @version 1.0
  * @className: UserArgumentResolver
- * @description: TODO
+ * @description: UserArgumentResolver
  * @date 2019/2/16 17:55
  */
 @Service
@@ -55,6 +55,9 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     private String getCookieValue(HttpServletRequest request, String cookieName) {
         //获得所有cookie
         Cookie[]  cookies = request.getCookies();
+        if(cookies == null || cookies.length <= 0) {
+            return null;
+        }
         for(Cookie cookie : cookies) {
             //遍历，如果和我们需要的cookie同名，则取值
             if(cookie.getName().equals(cookieName)) {

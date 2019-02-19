@@ -11,7 +11,7 @@ import java.util.List;
  * @author coldsmoke
  * @version 1.0
  * @className: WebConfig
- * @description: TODO
+ * @description: WebConfig
  * @date 2019/2/16 17:48
  */
 @Configuration
@@ -28,7 +28,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        // TODO Auto-generated method stub
         super.addArgumentResolvers(argumentResolvers);
         argumentResolvers.add(userArgumentResolver);
     }
